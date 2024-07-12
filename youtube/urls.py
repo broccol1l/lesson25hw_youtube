@@ -10,7 +10,7 @@ from content.views import video_page, home_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
-    path('video/', video_page, name='video')
+    path('video/<int:id>', video_page, name='video')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

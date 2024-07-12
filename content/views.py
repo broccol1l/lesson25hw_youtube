@@ -6,7 +6,7 @@ def home_page(request):
     context = {'video': video}
     return render(request, 'index.html', context=context)
 
-def video_page(request):
-    video = VideoModel.objects.all()
+def video_page(request, id):
+    video = VideoModel.objects.get(id=id)
     context = {'video': video}
     return render(request, 'video.html', context=context)

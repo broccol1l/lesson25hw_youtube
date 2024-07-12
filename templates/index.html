@@ -21,7 +21,7 @@
     <div class="video-gallery">
         {% for i in video %}
             <div class="video-item">
-                <a href="{% url 'video' %}">
+                <a href="/video/{{ i.id }}">
                     <img src="{{ i.preview.url }}" alt="">
                 </a>
                 <h3>{{ i.video_title }}</h3>

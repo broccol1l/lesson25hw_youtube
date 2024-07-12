@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>video</title>
+    <title>{{ video.video_title }}</title>
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <style>
         body {
@@ -26,6 +26,11 @@
             width: 1200px;
             display: block;
         }
+        .actions {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
         .like, .dislike {
             font-size: 20px;
             cursor: pointer;
@@ -37,24 +42,24 @@
         .dislike::before {
             content: "\1F44E";
         }
-         p.video-title {
+        p.video-title {
             font-size: 30px;
             font-weight: bold;
             color: white;
-            margin-left: 10px ;
+            margin-left: 10px;
             margin-bottom: 2px;
         }
         p.views {
             font-size: 20px;
             font-weight: bold;
             color: white;
-            margin-left: 10px ;
+            margin-left: 10px;
             margin-bottom: 2px;
         }
         p {
             margin-bottom: 10px;
             font-size: 14px;
-            margin-left: 10px ;
+            margin-left: 10px;
             color: #ffffff;
         }
     </style>
@@ -63,24 +68,21 @@
     <header>
         <h1><a href="{% url 'home' %}">YouTube</a></h1>
     </header>
-    {% for i in video %}
     <video controls>
-        <source src="{{ i.video_content.url }}" type="video/mp4">
+        <source src="{{ video.video_content.url }}" type="video/mp4">
     </video>
-    <p class="video-title">{{ i.video_title }}</p>
-    <p class="views">Просмотры: {{ i.user }}</p>
-    <p class="like" onclick="likeVideo('{{ i.id }}')">Like</p>
-    <p class="dislike" onclick="dislikeVideo('{{ i.id }}')">Dislike</p>
-    {% endfor %}
-
+    <p class="video-title">{{ video.video_title }}</p>
+    <p class="views">Просмотры: {{ video.user }}</p>
+    <div class="actions">
+        <p class="like" onclick="likeVideo('{{ video.id }}')">{{ video.like }}</p>
+        <p class="dislike" onclick="dislikeVideo('{{ video.id }}')">{{ video.dislike }}</p>
+    </div>
     <script>
         function likeVideo(videoId) {
-            // Обработка лайка
             console.log('Liked video with ID:', videoId);
         }
 
         function dislikeVideo(videoId) {
-            // Обработка дизлайка
             console.log('Disliked video with ID:', videoId);
         }
     </script>
